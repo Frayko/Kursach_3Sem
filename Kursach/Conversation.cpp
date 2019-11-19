@@ -35,6 +35,10 @@ bool Conversation::operator>(Conversation& B) {
 	return (date.calcDayCount() > B.date.calcDayCount());
 }
 
+int Conversation::GetCalcDayCount() {
+	return date.calcDayCount();
+}
+
 Conversation Conversation::operator=(Conversation& B) {
 	if (city)
 		delete[] city;

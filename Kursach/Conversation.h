@@ -18,6 +18,7 @@ public:
 	Conversation(char* _city, char* _code_city, char* _number_phone, Tariff _tariff, int _call_duration, Date _date, Time _time, Date_pay _date_pay);
 	Conversation(Conversation& C);
 	void calcPayment();
+	int GetCalcDayCount();
 	bool operator>(Conversation& B);
 	Conversation operator=(Conversation& B);
 	~Conversation();

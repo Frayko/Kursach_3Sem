@@ -56,7 +56,7 @@ public:
 
 	Date_pay(Date_pay& d) : Date(d) {
 		date = new char[strlen(d.date) + 1]; 
-		strcpy(date, d.date); 
+		strcpy(date, d.date);
 	};
 
 	~Date_pay() {

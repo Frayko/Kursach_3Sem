@@ -25,7 +25,7 @@ void DataBase::add(Conversation& A) {
 void DataBase::sort() {
 	for (int i = 0; i < count_conversation - 1; i++) {
 		for (int j = 0; j < count_conversation - i - 1; j++) {
-			if (list[j] > list[j + 1]) {
+			if (list[j]->GetCalcDayCount() > list[j + 1]->GetCalcDayCount()) {
 				Conversation* temp = list[j];
 				list[j] = list[j + 1];
 				list[j + 1] = temp;

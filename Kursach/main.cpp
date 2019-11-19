@@ -27,6 +27,7 @@ int main() {
 			Conversation third((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", tar, 12, dat, tim, dat_p);
 			DataBase test(first);
 			test.add(second); test.add(third);
+			//bool kek = first > second;
 			//Conversation list[2];				ƒописать инициализацию разговора
 			//list[0] = first;					ѕеределать под список базу данных, либо предоставить функцию дл€ сравнени€ даты в массиве разговоров
 			//list[1] = second;					
