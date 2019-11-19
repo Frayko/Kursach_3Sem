@@ -4,7 +4,7 @@
 using namespace std;
 
 Conversation::Conversation() {
-
+	city = nullptr;
 }
 
 Conversation::Conversation(char* _city, char* _code_city, char* _number_phone, Tariff _tariff, int _call_duration, Date _date, Time _time, Date_pay _date_pay) {

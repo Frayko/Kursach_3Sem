@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #pragma once
 #include <iostream>
 using namespace std;
@@ -46,17 +47,25 @@ class Date_pay : Date {
 protected:
 	char* date;
 public:
-	Date_pay(int _day = 0, int _month = 0, int _year = 0) : Date(_day, _month, _year) { if (day == 0 || month == 0) date = nullptr; else updateDate(); }
+	Date_pay(int _day = 0, int _month = 0, int _year = 0) : Date(_day, _month, _year) { 
+		if (day == 0 || month == 0) 
+			date = nullptr; 
+		else 
+			updateDate(); 
+	}
+
 	Date_pay(Date_pay& d) : Date(d) {
 		date = new char[strlen(d.date) + 1]; 
-		strcpy_s(date, 100, d.date); 
+		strcpy(date, d.date); 
 	};
+
 	~Date_pay() {
 		if (date) { 
 			delete[] date; 
 			date = nullptr; 
 		}
 	}
+
 	void updateDate() {
 		int i = 0, j = 0;
 		char buf[30];
@@ -79,7 +88,7 @@ public:
 		if (date)
 			delete[] date;
 		date = new char[strlen(t_date) + 1];
-		strcpy_s(date, 30, t_date);
+		strcpy(date, t_date);
 	}
 
 	void show() {
@@ -93,7 +102,7 @@ public:
 		if (date)
 			delete[] date;
 		date = new char[strlen(d.date) + 1];
-		strcpy_s(date, strlen(d.date) + 1, d.date);
+		strcpy(date, d.date);
 		return *this;
 	}
 };

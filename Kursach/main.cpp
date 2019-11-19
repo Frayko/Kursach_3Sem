@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "DataBase.h"
 using namespace std;
@@ -26,6 +27,11 @@ int main() {
 			Conversation third((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", tar, 12, dat, tim, dat_p);
 			DataBase test(first);
 			test.add(second); test.add(third);
+			//Conversation list[2];				ƒописать инициализацию разговора
+			//list[0] = first;					ѕеределать под список базу данных, либо предоставить функцию дл€ сравнени€ даты в массиве разговоров
+			//list[1] = second;					
+			//bool kek = list[0] > list[1];
+			test.sort();
 			system("pause");
 			break;
 		}
