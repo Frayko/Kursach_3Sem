@@ -1,24 +1,24 @@
 #pragma once
-#include "DateTime.h"
-#include "Tariff.h"
+#include "Date.h"
+#include "Time.h"
 
 class Conversation {
 private:
-	char* city;
+	static int count_obj;
+	char city[20];
 	char code_city[4];
 	char number_phone[7];
-	Tariff tariff;
-	Date_pay date_pay;
-	Date date;
-	Time time;
+	double tariff;
 	int call_duration;
 	double pay;
+	Date date_pay;
+	Date date;
+	Time time;
 public:
 	Conversation();
-	Conversation(char* _city, char* _code_city, char* _number_phone, Tariff _tariff, int _call_duration, Date _date, Time _time, Date_pay _date_pay);
+	Conversation(char* _city, char* _code_city, char* _number_phone, double _tariff, int _call_duration, Date _date, Time _time, Date _date_pay);
 	Conversation(Conversation& C);
 	void calcPayment();
-	int GetCalcDayCount();
 	bool operator>(Conversation& B);
 	Conversation operator=(Conversation& B);
 	~Conversation();

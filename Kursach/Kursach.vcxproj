@@ -124,14 +124,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Conversation.cpp" />
-    <ClCompile Include="DataBase.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Conversation.h" />
-    <ClInclude Include="DataBase.h" />
-    <ClInclude Include="DateTime.h" />
-    <ClInclude Include="Tariff.h" />
+    <ClInclude Include="Date.h" />
+    <ClInclude Include="TemplateOfTree.h" />
+    <ClInclude Include="Time.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

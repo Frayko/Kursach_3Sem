@@ -21,21 +21,18 @@
     <ClCompile Include="Conversation.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="DataBase.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Conversation.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="DataBase.h">
+    <ClInclude Include="TemplateOfTree.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Tariff.h">
+    <ClInclude Include="Time.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="DateTime.h">
+    <ClInclude Include="Date.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
