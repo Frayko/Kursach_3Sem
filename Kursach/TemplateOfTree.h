@@ -13,25 +13,15 @@ private:
 	};
 	int count = 0;
 	Elem<T>* root;
+	void Insert(Elem<T>*&, T* _obj);
 	void memfree(Elem<T>*&);
 public:
-	Tree() { root = nullptr; }
+	Tree() : root(nullptr) {}
 	Tree(T* _obj) : root(new Elem<T>(_obj)) {}
 	~Tree() { memfree(root); root = nullptr; }
-	void Insert(Elem<T>*&, T* _obj);
 	void Push(T* _obj);
-	//void Sort(Elem<T>*&);
+
 };
-
-
-template <class T>
-void Tree<T>::memfree(Elem<T>*& t) {
-	if (t->left)
-		memfree(t->left);
-	if (t->right)
-		memfree(t->right);
-	delete t;
-}
 
 template <class T>
 void Tree<T>::Insert(Elem<T>*& t, T* _obj) {
@@ -59,11 +49,12 @@ void Tree<T>::Push(T* _obj) {
 	}
 }
 
-//template <class T>
-//void Tree<T>::Sort(Elem<T>*& t) {
-//	if (t->left != nullptr)
-//		Sort(t->left);
-//	else if (t->right != nullptr)
-//		Sort(t->right);
-//	else
-//}
+template <class T>
+void Tree<T>::memfree(Elem<T>*& t) {
+	if (t->left)
+		memfree(t->left);
+	if (t->right)
+		memfree(t->right);
+	delete t;
+}
+

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Date {
@@ -17,21 +18,16 @@ public:
 		year = _year;
 	}
 
+	int getDay() {
+		return day;
+	}
+
+	int getMonth() {
+		return month;
+	}
+
 	int calcDayCount() {
 		return (year - 1) * 365 + (month - 1) * 30 + (month - 1) / 2 + day;
-	}
-
-	void show() {
-		printf("%02d.%02d.%04d", day, month, year);
-	}
-
-	void edit(int mode, int value) {
-		switch (mode) {
-		case 1: { if (value <= 0 || value > 31) { cout << "Ошибка ввода!"; return; } day = value; break; }
-		case 2: { if (value <= 0 || value > 12) { cout << "Ошибка ввода!"; return; } month = value; break; }
-		case 3: { year = value; break; }
-		default: { cout << "Error";  break; }
-		}
 	}
 
 	Date& operator=(Date& d) {
@@ -40,4 +36,30 @@ public:
 		year = d.year;
 		return *this;
 	}
+
+	friend ostream& operator << (ostream& os, Date& d);
+	friend fstream& operator << (fstream& os, Date& d);
+	friend fstream& operator >> (fstream& is, Date& d);
 };
+
+ostream& operator << (ostream& os, Date& d) {
+	if (d.day == 0 || d.month == 0)
+		os << "Отсутствует";
+	else
+		os << d.day << '.' << d.month << '.' << d.year;
+	return os;
+}
+
+fstream& operator << (fstream& os, Date& d) {
+	os.write((char*)&d.day, sizeof(int));
+	os.write((char*)&d.month, sizeof(int));
+	os.write((char*)&d.year, sizeof(int));
+	return os;
+}
+
+fstream& operator >> (fstream& is, Date& d) {
+	is.read((char*)&d.day, sizeof(int));
+	is.read((char*)&d.month, sizeof(int));
+	is.read((char*)&d.year, sizeof(int));
+	return is;
+}

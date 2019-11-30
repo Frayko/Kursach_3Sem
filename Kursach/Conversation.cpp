@@ -1,9 +1,19 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "Conversation.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 Conversation::Conversation() {
+	strcpy(city, "R.N.G.");
+	strcpy(code_city, "999");
+	strcpy(number_phone, "123456");
+	tariff = rand() % 4 + 1;
+	call_duration = rand() % 40 + 1;
+	calcPayment();
+	date.set(rand() % 30 + 1, rand() % 12 + 1, 1970 + rand() % 40);
+	time.set(rand() % 60, rand() % 60, rand() % 24);
+	date_pay.set(0, 0, 0);
 	count_obj++;
 }
 
@@ -53,6 +63,33 @@ void Conversation::calcPayment() {
 	pay = tariff * (double)call_duration;
 }
 
+bool Conversation::verificationOfPayment() {
+	if (date_pay.getDay() == 0 || date_pay.getMonth() == 0)
+		return false;
+	return true;
+}
+
 Conversation::~Conversation() {
 	count_obj--;
+}
+
+ostream& operator << (ostream& os, Conversation& c) {
+	cout << "---Междугородний звонок---" << endl
+		 << "Номер абонента: +7 " << c.code_city << " " << c.number_phone << endl
+		 << "Тариф: " << c.tariff << " рублей за минуту" << endl
+		 << "Дата и время разговора: " << c.date << " " << c.time << endl
+		 << "Длительность: " << c.call_duration << endl
+		 << "Расчётная сумма: " << c.pay << endl
+		 << "Дата оплаты: " << c.date_pay << endl;
+	return os;
+}
+
+fstream& operator << (fstream& os, Conversation& c) {
+	
+	return os;
+}
+
+fstream& operator >> (fstream& is, Conversation& c) {
+
+	return is;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 class Time {
@@ -18,23 +19,32 @@ public:
 		hour = _hour;
 	}
 
-	void show() {
-		printf("%02d:%02d:%02d", hour, min, sec);
-	}
-
-	void edit(int mode, int value) {
-		switch (mode) {
-		case 1: { if (value < 0 || value > 60) { cout << "Ошибка ввода!"; return; } sec = value; break; }
-		case 2: { if (value < 0 || value > 60) { cout << "Ошибка ввода!"; return; } min = value; break; }
-		case 3: { if (value < 0 || value > 24) { cout << "Ошибка ввода!"; return; } hour = value; break; }
-		default: { cout << "Error";  break; }
-		}
-	}
-
 	Time& operator=(Time& t) {
 		sec = t.sec;
 		min = t.min;
 		hour = t.hour;
 		return *this;
 	}
+
+	friend ostream& operator << (ostream& os, Time& t);
+	friend fstream& operator << (fstream& os, Time& t);
+	friend fstream& operator >> (fstream& is, Time& t);
 };
+
+ostream& operator << (ostream& os, Time& t) {
+	os << t.hour << ':' << t.min << ':' << t.sec;
+}
+
+fstream& operator << (fstream& os, Time& t) {
+	os.write((char*)&t.sec, sizeof(int));
+	os.write((char*)&t.min, sizeof(int));
+	os.write((char*)&t.hour, sizeof(int));
+	return os;
+}
+
+fstream& operator >> (fstream& is, Time& t) {
+	is.read((char*)&t.sec, sizeof(int));
+	is.read((char*)&t.min, sizeof(int));
+	is.read((char*)&t.hour, sizeof(int));
+	return is;
+}

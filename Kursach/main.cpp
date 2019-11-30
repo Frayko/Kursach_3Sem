@@ -59,6 +59,7 @@ int main() {
 			test.Push(&s);
 			break;
 		}
+
 		case 0: { flag = false; break; }
 		default: { cout << "Îøèáêà ââîäà!\n"; system("pause"); break; }
 		}
