@@ -85,11 +85,27 @@ ostream& operator << (ostream& os, Conversation& c) {
 }
 
 fstream& operator << (fstream& os, Conversation& c) {
-	
+	os.write((char*)&c.city, sizeof(c.city));
+	os.write((char*)&c.code_city, sizeof(c.code_city));
+	os.write((char*)&c.number_phone, sizeof(c.number_phone));
+	os.write((char*)&c.tariff, sizeof(c.tariff));
+	os.write((char*)&c.call_duration, sizeof(c.call_duration));
+	os.write((char*)&c.pay, sizeof(c.pay));
+	os << c.date;
+	os << c.date_pay;
+	os << c.time;
 	return os;
 }
 
 fstream& operator >> (fstream& is, Conversation& c) {
-
+	is.read((char*)&c.city, sizeof(c.city));
+	is.read((char*)&c.code_city, sizeof(c.code_city));
+	is.read((char*)&c.number_phone, sizeof(c.number_phone));
+	is.read((char*)&c.tariff, sizeof(c.tariff));
+	is.read((char*)&c.call_duration, sizeof(c.call_duration));
+	is.read((char*)&c.pay, sizeof(c.pay));
+	is >> c.date;
+	is >> c.date_pay;
+	is >> c.time;
 	return is;
 }

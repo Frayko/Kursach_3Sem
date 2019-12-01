@@ -30,21 +30,3 @@ public:
 	friend fstream& operator << (fstream& os, Time& t);
 	friend fstream& operator >> (fstream& is, Time& t);
 };
-
-ostream& operator << (ostream& os, Time& t) {
-	os << t.hour << ':' << t.min << ':' << t.sec;
-}
-
-fstream& operator << (fstream& os, Time& t) {
-	os.write((char*)&t.sec, sizeof(int));
-	os.write((char*)&t.min, sizeof(int));
-	os.write((char*)&t.hour, sizeof(int));
-	return os;
-}
-
-fstream& operator >> (fstream& is, Time& t) {
-	is.read((char*)&t.sec, sizeof(int));
-	is.read((char*)&t.min, sizeof(int));
-	is.read((char*)&t.hour, sizeof(int));
-	return is;
-}

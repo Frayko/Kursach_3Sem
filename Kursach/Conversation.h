@@ -3,6 +3,7 @@
 #include "Time.h"
 #include <iostream>
 #include <fstream>
+using namespace std;
 
 class Conversation {
 private:

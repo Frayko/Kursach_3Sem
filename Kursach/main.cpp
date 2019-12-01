@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <fstream>
 #include "Conversation.h"
 #include "TemplateOfTree.h"
 using namespace std;
@@ -57,6 +58,22 @@ int main() {
 			test.Push(&h);
 			test.Push(&k);
 			test.Push(&s);
+			break;
+		}
+
+		case 3: {
+			Date dat(12, 5, 2000);
+			Date dat_p(13, 5, 2000);
+			Time tim(25, 55, 12);
+			Conversation first((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 1.2, 12, dat, tim, dat_p);
+			fstream fout("test.dat", ios_base::binary | ios_base::out);
+			fout << first;
+			fout.close();
+			Conversation qw;
+			fstream fin("test.dat", ios_base::binary | ios_base::in);
+			fin >> qw;
+			fin.close();
+			system("pause");
 			break;
 		}
 
