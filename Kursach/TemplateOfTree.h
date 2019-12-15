@@ -20,7 +20,6 @@ public:
 	Tree(T* _obj) : root(new Elem<T>(_obj)) {}
 	~Tree() { memfree(root); root = nullptr; }
 	void Push(T* _obj);
-
 };
 
 template <class T>
