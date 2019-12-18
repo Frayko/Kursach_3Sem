@@ -25,3 +25,22 @@ public:
 	}
 };
 
+class ErrorReadElement : public Error {
+public:
+	ErrorReadElement() {}
+
+	void ErrMsg() const {
+		cerr << "Element obj cannot be read!\n";
+		Continue();
+	}
+};
+
+class ErrorIsEmpty : public Error {
+public:
+	ErrorIsEmpty() {}
+
+	void ErrMsg() const {
+		cerr << "File is empty!\n";
+		Continue();
+	}
+};

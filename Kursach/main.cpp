@@ -100,16 +100,29 @@ int main() {
 				double k = 21231;
 				double s = 10.2;
 				Binary<double> test;
-				test.push(&a);
-				test.push(&b);
-				test.push(&c);
-				test.push(&d);
-				test.push(&g);
-				test.push(&h);
-				test.push(&k);
-				test.push(&s);
+				test.push(a);
+				test.push(b);
+				test.push(c);
+				test.push(d);
+				test.push(g);
+				test.push(h);
+				test.push(k);
+				test.push(s);
+				//test.print(sizeof(ios_base::seekdir), 0);
+				system("pause");
+				break;
+			}
+
+			case 6: {
+				Binary<double> test;
 				test.print(sizeof(ios_base::seekdir), 0);
 				system("pause");
+				break;
+			}
+
+			case 7: {
+				Binary<double> test;
+				test.clean();
 				break;
 			}
 			case 0: { flag = false; break; }
