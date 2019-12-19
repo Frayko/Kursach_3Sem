@@ -6,10 +6,26 @@
 #include "BinaryFile.h"
 using namespace std;
 
+#define CurrentType double
+
+void addStr(char*& str, char* add_str) {
+	char* buf;
+	buf = new char[strlen(str) + strlen(add_str) + 1];
+	strcpy(buf, str);
+	strcat(buf, add_str);
+	if (str)
+		delete[] str;
+	str = new char[strlen(buf) + 1];
+	strcpy(str, buf);
+}
+
 void printMenu() {
-	cout << "[1]. Дерево с классом разговора\n"
-		 << "[2]. Дерево с простым типом double\n"
-		 << "[0]. Выход\n\n>>> ";
+	cout << "[1]. Add\n"
+		 << "[2]. Print\n"
+		 << "[3]. Delete\n"
+		 << "[4]. Search\n"
+		 << "[5]. Update\n"
+		 << "[0]. Exit\n\n>>> ";
 }
 
 int Conversation::count_obj = 0;
@@ -18,6 +34,10 @@ int main() {
 	setlocale(LC_ALL, "rus");
 	bool flag = true;
 	int p_menu;
+	char* filename = new char[strlen(typeid(CurrentType).name()) + 1];
+	strcpy(filename, typeid(CurrentType).name());
+	addStr(filename, (char*)".bin");
+	Binary<CurrentType> test(filename);
 
 	while (flag) {
 		system("cls");
@@ -25,24 +45,8 @@ int main() {
 		cin >> p_menu;
 		try {
 			switch (p_menu) {
+
 			case 1: {
-				Date dat(12, 5, 2000);
-				Date dat_p(13, 5, 2000);
-				Time tim(25, 55, 12);
-				Conversation first((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 1.2, 12, dat, tim, dat_p);
-				dat.set(13, 5, 2000);
-				Conversation second((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 2.4, 12, dat, tim, dat_p);
-				dat.set(8, 5, 2000);
-				Conversation third((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 5.1, 12, dat, tim, dat_p);
-				Tree<Conversation> test;
-				test.Push(&first);
-				test.Push(&second);
-				test.Push(&third);
-				system("pause");
-				break;
-			}
-
-			case 2: {
 				double a = 11.2;
 				double b = 22;
 				double c = 12;
@@ -51,55 +55,6 @@ int main() {
 				double h = 222;
 				double k = 21231;
 				double s = 10.2;
-				Tree<double> test;
-				test.Push(&a);
-				test.Push(&b);
-				test.Push(&c);
-				test.Push(&d);
-				test.Push(&g);
-				test.Push(&h);
-				test.Push(&k);
-				test.Push(&s);
-				break;
-			}
-
-			case 3: {
-				Date dat(12, 5, 2000);
-				Date dat_p(13, 5, 2000);
-				Time tim(25, 55, 12);
-				Conversation first((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 1.2, 12, dat, tim, dat_p);
-				fstream fout("test.dat", ios_base::binary | ios_base::out);
-				fout << first;
-				fout.close();
-				Conversation qw;
-				fstream fin("test.dat", ios_base::binary | ios_base::in);
-				fin >> qw;
-				fin.close();
-				system("pause");
-				break;
-			}
-
-			case 4: {
-				Date dat(12, 5, 2000);
-				Date dat_p(13, 5, 2000);
-				Time tim(25, 55, 12);
-				Conversation first((char*)"Ust-Ilimsk", (char*)"395", (char*)"555555", 1.2, 12, dat, tim, dat_p);
-				int size = sizeof(first);
-				cout << size;
-				system("pause");
-				break;
-			}
-
-			case 5: {
-				double a = 11.2;
-				double b = 22;
-				double c = 12;
-				double d = 22.33;
-				double g = 1213.3;
-				double h = 222;
-				double k = 21231;
-				double s = 10.2;
-				Binary<double> test;
 				test.push(a);
 				test.push(b);
 				test.push(c);
@@ -108,23 +63,33 @@ int main() {
 				test.push(h);
 				test.push(k);
 				test.push(s);
-				//test.print(sizeof(ios_base::seekdir), 0);
 				system("pause");
 				break;
 			}
 
-			case 6: {
-				Binary<double> test;
-				test.print(sizeof(ios_base::seekdir), 0);
+			case 2: {
+				test.print(4, 0);
 				system("pause");
 				break;
 			}
 
-			case 7: {
-				Binary<double> test;
-				test.clean();
+			case 3: {
+				test.pop(55);
+				system("pause");
 				break;
 			}
+
+			case 4: {
+				cout << test.search(21231);
+				system("pause");
+				break;
+			}
+
+			case 5: {
+				test.update();
+				break;
+			}
+
 			case 0: { flag = false; break; }
 			default: { cout << "Ошибка ввода!\n"; system("pause"); break; }
 			}

@@ -15,16 +15,6 @@ public:
 	}
 };
 
-class ErrorOpenFile : public Error {
-public:
-	ErrorOpenFile() {}
-
-	void ErrMsg() const {
-		cerr << "File cannot be read!\n";
-		Continue();
-	}
-};
-
 class ErrorReadElement : public Error {
 public:
 	ErrorReadElement() {}
@@ -32,6 +22,18 @@ public:
 	void ErrMsg() const {
 		cerr << "Element obj cannot be read!\n";
 		Continue();
+		system("pause");
+	}
+};
+
+class ErrorNoImplementation : public Error {
+public:
+	ErrorNoImplementation() {}
+
+	void ErrMsg() const {
+		cerr << "No Implementation!\n";
+		Continue();
+		system("pause");
 	}
 };
 
@@ -42,5 +44,6 @@ public:
 	void ErrMsg() const {
 		cerr << "File is empty!\n";
 		Continue();
+		system("pause");
 	}
 };

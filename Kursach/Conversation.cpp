@@ -47,6 +47,18 @@ bool Conversation::operator>(Conversation& B) {
 	return (date.calcDayCount() > B.date.calcDayCount());
 }
 
+bool Conversation::operator==(Conversation& B) {
+	return (date.calcDayCount() == B.date.calcDayCount());
+}
+
+bool Conversation::operator>(Date t) {
+	return (date.calcDayCount() > t.calcDayCount());
+}
+
+bool Conversation::operator==(Date t) {
+	return (date.calcDayCount() == t.calcDayCount());
+}
+
 Conversation Conversation::operator=(Conversation& B) {
 	strcpy(city, B.city);
 	strcpy(code_city, B.code_city);

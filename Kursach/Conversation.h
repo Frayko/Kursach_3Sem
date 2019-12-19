@@ -5,9 +5,6 @@
 #include <fstream>
 using namespace std;
 
-//размерность класса 91 байт
-//выделяется sizeof 96 байт, из-за 64 битной архитектуры сетка блоков памяти делится на 8 ячеек байт
-//#pragma pack(push, 1)
 class Conversation {
 private:
 	static int count_obj;
@@ -27,10 +24,12 @@ public:
 	void calcPayment();
 	bool verificationOfPayment();
 	bool operator>(Conversation& B);
+	bool operator==(Conversation& B);
+	bool operator==(Date t);
+	bool operator>(Date t);
 	Conversation operator=(Conversation& B);
 	friend ostream& operator<<(ostream& os, Conversation& c);
 	friend fstream& operator<<(fstream& os, Conversation& c);
 	friend fstream& operator>>(fstream& is, Conversation& c);
 	~Conversation();
 };
-//#pragma pack(pop)
