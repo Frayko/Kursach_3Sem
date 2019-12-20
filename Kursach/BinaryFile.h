@@ -36,9 +36,10 @@ public:
 	void pop(Data target);
 	Data get_obj(int pos);
 	int search(Data target);
-	void select(Data target);
+	int select(Data target);
 	void update();
 	void info();
+	void clean();
 };
 
 template <class Data>
@@ -204,42 +205,6 @@ void Binary<Conversation>::rename() {
 }
 
 template <class Data>
-int Binary<Data>::search(Data target) {
-	Elem<Data> cur;
-	int pos = get_root();
-	get_Elem(pos, cur);
-	for (; cur.left != -1 || cur.right != -1; get_Elem(pos, cur)) {
-		if (cur.obj == target) {
-			return pos;
-		}
-		else {
-			if (cur.obj > target) {
-				if (cur.left == -1) {
-					cerr << "No results...\n";
-					return -1;
-				}
-				else
-					pos = cur.left;
-			}
-			else {
-				if (cur.right == -1) {
-					cerr << "No results...\n";
-					return -1;
-				}
-				else
-					pos = cur.right;
-			}
-		}
-	}
-	if (cur.obj == target)
-		return pos;
-	else {
-		cerr << "No results...\n";
-		return -1;
-	}
-}
-
-template <class Data>
 void Binary<Data>::pop(Data target) {
 	if (isEmpty())
 		return;
@@ -286,7 +251,6 @@ void Binary<Data>::pop(Data target) {
 			write((char*)&cur.right, sizeof(int));
 		}
 	}
-
 }
 
 template <class Data>
@@ -375,23 +339,62 @@ void Binary<Data>::writeElem(ofstream& file, int &new_pos, int old_pos, Elem<Dat
 }
 
 template <class Data>
-void Binary<Data>::select(Data target) {
+int Binary<Data>::search(Data target) {
+	Elem<Data> cur;
+	int pos = get_root();
+	get_Elem(pos, cur);
+	for (; cur.left != -1 || cur.right != -1; get_Elem(pos, cur)) {
+		if (cur.obj == target) {
+			return pos;
+		}
+		else {
+			if (cur.obj > target) {
+				if (cur.left == -1) {
+					cerr << "No results...\n";
+					return -1;
+				}
+				else
+					pos = cur.left;
+			}
+			else {
+				if (cur.right == -1) {
+					cerr << "No results...\n";
+					return -1;
+				}
+				else
+					pos = cur.right;
+			}
+		}
+	}
+	if (cur.obj == target)
+		return pos;
+	else {
+		cerr << "No results...\n";
+		return -1;
+	}
+}
+
+template <class Data>
+int Binary<Data>::select(Data target) {
 	int sel;
 	int pos = search(target);
 	if (pos == -1)
-		return;
+		return pos;
 	Elem<Data> cur;
 	get_Elem(pos, cur);
-	cout << "Position in binary file: " << pos << endl << "Obj: " << cur.obj << endl << endl << "[1]. Edit\n[any]. Exit\n\n>>> "; cin >> sel;
-	if (sel == 1)
+	cout << "Position in binary file: " << pos << endl << "Obj: " << cur.obj << endl << endl << "[1]. Edit\n[2]. Get position\n[any]. Exit\n\n>>> "; cin >> sel;
+	if (sel == 1) {
 		edit(pos);
+		return pos;
+	}
+	else if (sel == 2)
+		return pos;
 	else
-		return;
+		return -2;			//-2 - Выход
 }
 
 template <class Data>
 void Binary<Data>::edit(int pos) {
-	bool flag;
 	Elem<Data> cur;
 	get_Elem(pos, cur);
 	cout << "Obj: " << cur.obj << endl << "New Obj: ";
@@ -411,4 +414,10 @@ Data Binary<Data>::get_obj(int pos) {
 	Elem<Data> cur;
 	get_Elem(pos, cur);
 	return cur.obj;
+}
+
+template <class Data>
+void Binary<Data>::clean() {
+	close();
+	open(filename, ios::binary | ios::in | ios::out | ios::trunc);
 }
