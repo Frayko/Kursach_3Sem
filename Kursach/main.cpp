@@ -40,7 +40,8 @@ void printMenu() {
 		 << "[3]. Delete\n"
 		 << "[4]. Search\n"
 		 << "[5]. Update\n"
-		 << "[6]. File info\n"
+		 << "[6]. Get Obj\n"
+		 << "[7]. File info\n"
 		 << "[0]. Exit\n\n>>> ";
 }
 
@@ -121,6 +122,16 @@ int main() {
 			}
 
 			case 6: {
+				CurrentType obj;
+				int pos;
+				cout << endl << "GET\nPosition in binary file: "; cin >> pos;
+				obj = test.get_obj(pos);
+				cout << "Obj: " << obj << endl;
+				system("pause");
+				break;
+			}
+
+			case 7: {
 				test.info();
 				system("pause");
 				break;

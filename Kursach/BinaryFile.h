@@ -33,6 +33,7 @@ public:
 	void print(int pos, int size);
 	void rename();
 	void pop(Data target);
+	Data get_obj(int pos);
 	int search(Data target);
 	void select(Data target);
 	void update();
@@ -396,4 +397,11 @@ void Binary<Data>::info() {
 	cout << "File name: " << filename << endl;
 	seekg(0, ios_base::end);
 	cout << "Size(byte): " << (int)tellg() << endl;
+}
+
+template <class Data>
+Data Binary<Data>::get_obj(int pos) {
+	Elem<Data> cur;
+	get_Elem(pos, cur);
+	return cur.obj;
 }
