@@ -27,6 +27,7 @@ private:
 public:
 	Binary();
 	Binary(char* _filename);
+	Binary(Binary<Data>& f);
 	~Binary();
 	int get_root();
 	void push(Data _obj);
@@ -62,6 +63,12 @@ Binary<Data>::Binary(char* _filename) {
 		ofstream file(filename); file.close();
 		open(filename, ios_base::binary | ios_base::in | ios_base::out);
 	}
+}
+
+template <class Data>
+Binary<Data>::Binary(Binary& elem) {
+	filename = new char[strlen(elem.filename) + 1];
+	strcpy(filename, elem.filename);
 }
 
 template <class Data>
