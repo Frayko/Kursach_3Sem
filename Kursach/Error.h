@@ -47,3 +47,14 @@ public:
 		system("pause");
 	}
 };
+
+class ErrorInput : public Error {
+public:
+	ErrorInput() {}
+
+	void ErrMsg() const {
+		cerr << "Input Error!\n";
+		Continue();
+		system("pause");
+	}
+};

@@ -8,6 +8,13 @@ ostream& operator << (ostream& os, Time& t) {
 	return os;
 }
 
+istream& operator >> (istream& is, Time& t) {
+	cout << "second: "; is >> t.sec;
+	cout << "minute: "; is >> t.min;
+	cout << "hour: "; is >> t.hour;
+	return is;
+}
+
 fstream& operator << (fstream& os, Time& t) {
 	os.write((char*)&t.sec, sizeof(int));
 	os.write((char*)&t.min, sizeof(int));

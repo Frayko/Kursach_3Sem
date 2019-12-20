@@ -32,9 +32,6 @@
     <ClInclude Include="Conversation.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="TemplateOfTree.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>

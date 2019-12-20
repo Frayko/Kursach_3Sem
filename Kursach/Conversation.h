@@ -22,13 +22,13 @@ public:
 	Conversation(char* _city, char* _code_city, char* _number_phone, double _tariff, int _call_duration, Date _date, Time _time, Date _date_pay);
 	Conversation(Conversation& C);
 	void calcPayment();
+	void print();
 	bool verificationOfPayment();
 	bool operator>(Conversation& B);
 	bool operator==(Conversation& B);
-	bool operator==(Date t);
-	bool operator>(Date t);
 	Conversation operator=(Conversation& B);
 	friend ostream& operator<<(ostream& os, Conversation& c);
+	friend istream& operator>>(istream& os, Conversation& c);
 	friend fstream& operator<<(fstream& os, Conversation& c);
 	friend fstream& operator>>(fstream& is, Conversation& c);
 	~Conversation();

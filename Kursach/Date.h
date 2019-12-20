@@ -12,7 +12,6 @@ public:
 	Date(int _day = 0, int _month = 0, int _year = 0) : day(_day), month(_month), year(_year) {}
 	Date(Date& d) : day(d.day), month(d.month), year(d.year) {}
 	void set(int _day, int _month, int _year) {
-		if (_day <= 0 || _day > 31 || _month <= 0 || _month > 12) { cout << "Îøèáêà ââîäà!"; return; }
 		day = _day;
 		month = _month;
 		year = _year;
@@ -38,6 +37,7 @@ public:
 	}
 
 	friend ostream& operator << (ostream& os, Date& d);
+	friend istream& operator >> (istream& is, Date& d);
 	friend fstream& operator << (fstream& os, Date& d);
 	friend fstream& operator >> (fstream& is, Date& d);
 };

@@ -43,20 +43,19 @@ Conversation::Conversation(Conversation& C) {
 	count_obj++;
 }
 
+void Conversation::print() {
+	if (!verificationOfPayment())
+		cout << "No Paid(" << date << ")";
+	else
+		cout << "Paid(" << date << ")";
+}
+
 bool Conversation::operator>(Conversation& B) {
 	return (date.calcDayCount() > B.date.calcDayCount());
 }
 
 bool Conversation::operator==(Conversation& B) {
 	return (date.calcDayCount() == B.date.calcDayCount());
-}
-
-bool Conversation::operator>(Date t) {
-	return (date.calcDayCount() > t.calcDayCount());
-}
-
-bool Conversation::operator==(Date t) {
-	return (date.calcDayCount() == t.calcDayCount());
 }
 
 Conversation Conversation::operator=(Conversation& B) {
@@ -86,14 +85,25 @@ Conversation::~Conversation() {
 }
 
 ostream& operator << (ostream& os, Conversation& c) {
-	cout << "---Междугородний звонок---" << endl
-		 << "Номер абонента: +7 " << c.code_city << " " << c.number_phone << endl
-		 << "Тариф: " << c.tariff << " рублей за минуту" << endl
-		 << "Дата и время разговора: " << c.date << " " << c.time << endl
-		 << "Длительность: " << c.call_duration << endl
-		 << "Расчётная сумма: " << c.pay << endl
-		 << "Дата оплаты: " << c.date_pay << endl;
+	cout << "---Long Distance Call---" << endl
+		 << "Number: +7 " << c.code_city << " " << c.number_phone << endl
+		 << "Tariff: " << c.tariff << " RUB per minute" << endl
+		 << "Date: " << c.date << " " << c.time << endl
+		 << "Call duration: " << c.call_duration << endl
+		 << "Pay: " << c.pay << endl
+		 << "Date Pay: " << c.date_pay << endl;
 	return os;
+}
+
+istream& operator >> (istream& is, Conversation& c) {
+	cout << "Code city(3 symbols): "; is >> c.code_city;
+	cout << "Number(6 symbols): "; is >> c.number_phone;
+	cout << "Tariff: "; is >> c.tariff;
+	cout << "Call duration: "; is >> c.call_duration;
+	cout << "Date\n"; is >> c.date;
+	cout << "Time\n"; is >> c.time;
+	cout << "Date Pay: "; is >> c.date_pay;
+	return is;
 }
 
 fstream& operator << (fstream& os, Conversation& c) {

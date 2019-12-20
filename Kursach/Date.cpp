@@ -5,10 +5,17 @@ using namespace std;
 
 ostream& operator << (ostream& os, Date& d) {
 	if (d.day == 0 || d.month == 0)
-		os << "Отсутствует";
+		os << "Empty";
 	else
 		os << d.day << '.' << d.month << '.' << d.year;
 	return os;
+}
+
+istream& operator >> (istream& is, Date& d) {
+	cout << "day: "; is >> d.day;
+	cout << "month: "; is >> d.month;
+	cout << "year: "; is >> d.year;
+	return is;
 }
 
 fstream& operator << (fstream& os, Date& d) {

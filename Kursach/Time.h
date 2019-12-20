@@ -13,7 +13,6 @@ public:
 	Time(Time& t) : sec(t.sec), min(t.min), hour(t.hour) {}
 
 	void set(int _sec, int _min, int _hour) {
-		if (_sec < 0 || _sec > 60 || _min < 0 || _min > 60 || _hour < 0 || _hour > 24) { cout << "Ошибка ввода!"; return; }
 		sec = _sec;
 		min = _min;
 		hour = _hour;
@@ -27,6 +26,7 @@ public:
 	}
 
 	friend ostream& operator << (ostream& os, Time& t);
+	friend istream& operator >> (istream& is, Time& t);
 	friend fstream& operator << (fstream& os, Time& t);
 	friend fstream& operator >> (fstream& is, Time& t);
 };
