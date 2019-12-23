@@ -42,7 +42,6 @@ void printMenu() {
 		 << "[5]. Update\n"
 		 << "[6]. Get Obj\n"
 		 << "[7]. File info\n"
-		 << "[8]. Tests\n"
 		 << "[0]. Exit\n\n>>> ";
 }
 
@@ -138,18 +137,18 @@ int main() {
 				break;
 			}
 
-			case 8: {
-				time_t start, end;
-				for (int i = 5000; i <= 500000; i += 5000) {
-					test.clean();
-					start = clock();
-					for (int j = 0; j < i; j++)
-						test.push(rand() % i);
-					end = clock();
-					cout << "Count elements: " << i << "	time(sec): " << (double)(end - start) / 1000 << endl;
-				}
-				system("pause");
-			}
+			//case 8: {
+			//	time_t start, end;
+			//	for (int i = 5000; i <= 50000; i += 5000) {
+			//		test.clean();
+			//		start = clock();
+			//		for (int j = 0; j < i; j++)
+			//			test.push(rand() % i);
+			//		end = clock();
+			//		cout << "Count elements: " << i << "	time(sec): " << (double)(end - start) / 1000 << endl;
+			//	}
+			//	system("pause");
+			//}
 
 			case 9: {
 				for (int i = 0; i < COUNT_ELEMS; i++)

@@ -242,13 +242,23 @@ void Binary<Data>::pop(Data target) {
 		}
 		else {
 			new_pos = find_max_min(cur.left, cur_pos);
-			get_Elem(cur_pos, cur);
-			seekp(parent_pos, ios_base::beg);
-			write((char*)&new_pos, sizeof(int));
-			seekp(new_pos, ios_base::beg);
-			write((char*)&cur.left, sizeof(int));
-			seekp(new_pos + 4, ios_base::beg);
-			write((char*)&cur.right, sizeof(int));
+			get_Elem(new_pos, cur);
+			if (cur.left != -1) {
+				get_Elem(cur_pos, cur);
+				seekp(parent_pos, ios_base::beg);
+				write((char*)&new_pos, sizeof(int));
+				seekp(new_pos + 4, ios_base::beg);
+				write((char*)&cur.right, sizeof(int));
+			}
+			else {
+				get_Elem(cur_pos, cur);
+				seekp(parent_pos, ios_base::beg);
+				write((char*)&new_pos, sizeof(int));
+				seekp(new_pos, ios_base::beg);
+				write((char*)&cur.left, sizeof(int));
+				seekp(new_pos + 4, ios_base::beg);
+				write((char*)&cur.right, sizeof(int));
+			}
 		}
 	}
 }
